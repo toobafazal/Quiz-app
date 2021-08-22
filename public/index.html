@@ -8,6 +8,25 @@
     <title>quiz app</title>
     <link rel="stylesheet" type="text/css"
         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+        
+        <script>
+          // Your web app's Firebase configuration
+          // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+          var firebaseConfig = {
+            apiKey: "AIzaSyDEl42M2TrIpON6M7VdeZzw-QXpb9B6Ocs",
+            authDomain: "quiz-app-3d9d9.firebaseapp.com",
+            projectId: "quiz-app-3d9d9",
+            storageBucket: "quiz-app-3d9d9.appspot.com",
+            messagingSenderId: "404037118773",
+            appId: "1:404037118773:web:408021fa30754730127a7c",
+            measurementId: "G-T7VH7BHN71"
+          };
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+        </script>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -19,7 +38,7 @@
         <div id="thin" class="div1">
             <div id="login">
                 <h1 id="logo">Sign in now</h1>
-                <label><input type="text" placeholder="Name" id="username"></label>
+                <label><input type="text" placeholder="Name" id="username"></label><br>
                 <label><input type="email" required placeholder="Email" id="email"></label>
                 <center>
                     <button onClick="loginuser()" class="div3">Log In</button>

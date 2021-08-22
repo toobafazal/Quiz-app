@@ -1,3 +1,5 @@
+console.log(firebase);
+
 const question = document.querySelector('.question');
 const option1 = document.querySelector('#option1');
 const option2 = document.querySelector('#option2');
@@ -12,7 +14,9 @@ var quizQues = document.getElementById("quizQues");
 var next = document.getElementById("next-btn");
 var user = {}
 var timeInterval;
-var userName = document.getElementById("username")
+
+var userName = document.getElementById("username");
+
 var userEmail = document.getElementById("email")
 var cardCont = document.getElementsByClassName("card-cont")
 var name_div = document.getElementById("name");
@@ -29,6 +33,8 @@ const loginuser = () => {
         form.classList.add("hide");
         cardCont[0].classList.remove("hide");
         name_div.innerHTML = `Name: ${userName.value}`
+        firebase.database().ref("quiz").set(userName.value);
+        firebase.database().ref("score").set(score);
     }
 }
 
@@ -61,6 +67,8 @@ timeInterval = setInterval(function () {
 }, 1000)
 
 }
+var key = firebase.database().ref('quiz').push().key;
+console.log(key);
 var questionArray = [
     {
     question: "Full Form of RAM is?",
@@ -121,6 +129,7 @@ let questionCount = 0;
 let score = 0;
 
 const loadQuestion = () => {
+    firebase.database().ref(`questionarr/${count}`)
     const questionList = questionArray[questionCount];
 
 question.innerText = questionList.question;
@@ -158,7 +167,7 @@ submit.addEventListener('click', () =>{
     }else{
         showscore.innerHTML = ` 
         <h3> your score is ${score}/${questionArray.length} </h3>
-        <button class="btn" onClick="location.reload()">Play Again</button>`;
+        <button class="btn" onClick="location.reload()">Retake</button>`;
 
         showscore.classList.remove('scoreArea');
     }
