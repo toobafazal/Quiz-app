@@ -45,26 +45,6 @@ function startquiz(btn) {
     change.classList.remove('hide')
     loadQuestion();
 
-timeInterval = setInterval(function () {
-    seconds++;
-    // to increase the minutes after sixty second
-    if ((seconds / 60) == 1) {
-        seconds = 0;
-        minutes++
-    }
-    if (minutes == 1) {
-        alert("time's up");
-        clearInterval(timeInterval);
-        cardCont[0].classList.add("hide");
-        resultDiv.classList.remove("hide");
-        resultName.innerHTML = `Name:${userName.value}`
-        cor_btn.innerHTML = correct
-        wro_btn.innerHTML = wrong
-        tot_score.innerHTML = score
-    }
-    secondsContainer.innerHTML = String(seconds).padStart(2, '0');
-    minutesContainer.innerHTML = String(minutes).padStart(2, '0');
-}, 1000)
 
 }
 var key = firebase.database().ref('quiz').push().key;
@@ -129,7 +109,7 @@ let questionCount = 0;
 let score = 0;
 
 const loadQuestion = () => {
-    firebase.database().ref(`questionarr/${count}`)
+    firebase.database().ref(`questionarr/${questionCount}`)
     const questionList = questionArray[questionCount];
 
 question.innerText = questionList.question;
@@ -149,7 +129,7 @@ const getcheckanswer = () =>{
     });
     return answer;
 
-};
+}
 const deselectAll = () =>{
     answers.forEach((curAnselem) => curAnselem.checked = false)
 }
@@ -159,6 +139,7 @@ submit.addEventListener('click', () =>{
     console.log(checkanswer);
     if(checkanswer === questionArray[questionCount].ans){
         score++;
+        console.log()
     };
     questionCount++;
     deselectAll();

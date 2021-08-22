@@ -61,6 +61,8 @@ u{
 	width: 20%;
 	height: 30px;
 	text-align: center;
+    font-size: 20px;
+    color: #fff;
 }
 .icon{
 	border: 1px solid black;
